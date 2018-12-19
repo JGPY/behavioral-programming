@@ -1,4 +1,5 @@
-![bp.png](https://github.com/JGPY/behavioral-programming/tree/master/data/image/bp.png)
+
+![bp.png](./data/image/bp.png)
 
 Behavioral Programming (BP) is an approach to software development, which is aligned with how people often describe a systems' behavior. BP is an extension and generalization of scenario-based programming originally introduced with the language of live sequence charts (LSC). Besides LSC, the approach has been implemented in several conventional programming languages, including, Java, Erlang, C, C++ and Javascript.
 
