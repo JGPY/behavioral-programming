@@ -35,7 +35,8 @@ public class Move extends Event {
 	}
 
 	
-	public String toString() {
+	@Override
+    public String toString() {
 		
 		  
 		return ("Move(" + row + "," + col + ")/" +number); 

@@ -8,7 +8,7 @@ import bpSourceCode.bp.exceptions.BPJInterruptingEventException;
 import bpSourceCode.bp.exceptions.BPJRequestableSetException;
 
 /**
- * A thread that runs a scenario. The main reason for wrapping a BThread within
+ * A thread that runs a scenario. The Main reason for wrapping a BThread within
  * a separate thread is to allow pre and post processing.
  */
 public class JavaThreadForBThread extends Thread implements Serializable {

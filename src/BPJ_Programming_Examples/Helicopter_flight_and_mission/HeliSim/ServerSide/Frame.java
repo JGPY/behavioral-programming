@@ -28,6 +28,7 @@ public class Frame extends JFrame {
 				MainPanel.FRAME_SIZE / 2, new Color(0, 0, 0)));
 	}
 
+	@Override
 	public void paint(Graphics g) {
 		g2 = (Graphics2D) g;
 		super.paint(g);

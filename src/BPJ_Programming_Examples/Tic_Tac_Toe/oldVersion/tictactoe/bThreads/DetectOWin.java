@@ -89,7 +89,7 @@ public class DetectOWin extends BThread {
 						new O(p[2], col)));
 			}
 
-			// Run copies for the main diagonal
+			// Run copies for the Main diagonal
 			set.add(new DetectOWin(new O(p[0], p[0]), new O(p[1], p[1]),
 					new O(p[2], p[2])));
 

@@ -31,7 +31,7 @@ public class Click extends Event {
 		super();
 		this.row = row;
 		this.col = col;
-		this.setName("Click(" + row + "," + col + ")");
+		this.setName("rawData(" + row + "," + col + ")");
 	}
 
 	/**

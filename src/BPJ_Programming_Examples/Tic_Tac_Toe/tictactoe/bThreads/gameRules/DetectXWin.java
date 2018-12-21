@@ -90,7 +90,7 @@ public class DetectXWin extends BThread {
 						new X(p[2], col)));
 			}
 
-			// Run copies for the main diagonal
+			// Run copies for the Main diagonal
 			set.add(new DetectXWin(new X(p[0], p[0]), new X(p[1], p[1]),
 					new X(p[2], p[2])));
 

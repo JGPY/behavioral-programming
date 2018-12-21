@@ -715,7 +715,7 @@ public class BProgram implements Serializable {
 	}
 
 	/**
-	 * This method is the main event selection algorithm.
+	 * This method is the Main event selection algorithm.
 	 * 
 	 * @param ec
 	 *            null by default - start from the beginning. Otherwise

@@ -17,7 +17,7 @@ public class Constants {
 	/**
 	 * The number of boids in the BPJ_Programming_Examples.flock.
 	 */
-	public static int count = 8;
+	public static int count = 2;
 
 	/**
 	 * The keep away zone around boids

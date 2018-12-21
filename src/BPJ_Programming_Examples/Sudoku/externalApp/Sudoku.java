@@ -14,7 +14,7 @@ import bpSourceCode.bp.BThread;
 import static bpSourceCode.bp.BProgram.*;
 
 /**
- * The main entry point to the Sudoku program.
+ * The Main entry point to the Sudoku program.
  */
 public class Sudoku implements BApplication {
 	// GUI for interactively playing the game

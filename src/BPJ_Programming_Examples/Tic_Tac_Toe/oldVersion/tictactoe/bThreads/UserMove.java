@@ -27,9 +27,9 @@ public class UserMove extends BThread {
 
 		while (true) {
 			// Wait for a P event
-			logger.info("同步：bSync(none,new EventsOfClass(Click.class),none)");
+			logger.info("同步：bSync(none,new EventsOfClass(rawData.class),none)");
 			bp.bSync(none,new EventsOfClass(Click.class),none);
-			logger.info("结束：bSync(none,new EventsOfClass(Click.class),none)");
+			logger.info("结束：bSync(none,new EventsOfClass(rawData.class),none)");
 
 			// Put an X
 			Click p = (Click) bp.lastEvent;

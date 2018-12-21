@@ -18,7 +18,7 @@ import bpSourceCode.bp.BProgram;
 import bpSourceCode.bp.BThread;
 
 /**
- * The main entry point to the TicTacToe_Main program.
+ * The Main entry point to the TicTacToe_Main program.
  */
 public class TicTacToe_Main {
 	public static GUI gui;

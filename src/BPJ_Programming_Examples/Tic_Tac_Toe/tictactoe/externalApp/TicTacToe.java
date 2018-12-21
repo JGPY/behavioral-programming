@@ -29,7 +29,7 @@ import bp.BThread;
 import bp.RunMode;
 
 /**
- * The main entry point to the TicTacToe program.
+ * The Main entry point to the TicTacToe program.
  */
 public class TicTacToe implements BApplication { 
 	// GUI for interactively playing the game

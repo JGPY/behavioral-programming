@@ -50,7 +50,7 @@ When a b-thread generates an event it recognizes this as merely putting forward 
 ##### Requesting alternative events
 a b-thread, or a collection of b-threads for a particular task, can request some (or all) of the events that contribute to the attainment of the goal. This allows them to progress even if some of these alternatives are forbidden by other b-threads.
 
-###### Blocking
+##### Blocking
 A b-thread may forbid the triggering of events that are requested by other b-threads. The forbidding idioms will work correctly even if no such requests are made, or even if there no other b-threads at all.
 
 ##### Event selection with a global view

@@ -28,9 +28,9 @@ public class ClickHandler extends BThread {
 		BProgram bp1 = getBProgram();  
 		try {
 			System.out.println("我的：ClickHandler.runBThread（）");
-			logger.info("同步：bSync(p = new Click(row, col) , none ,none )");
+			logger.info("同步：bSync(p = new rawData(row, col) , none ,none )");
 			bp1.bSync(p = new Click(row, col) , none ,none );
-			logger.info("结束：bSync(p = new Click(row, col) , none ,none )");
+			logger.info("结束：bSync(p = new rawData(row, col) , none ,none )");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

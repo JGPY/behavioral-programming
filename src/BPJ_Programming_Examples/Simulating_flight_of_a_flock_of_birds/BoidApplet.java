@@ -1,19 +1,17 @@
 package BPJ_Programming_Examples.Simulating_flight_of_a_flock_of_birds;
 
-import static bpSourceCode.bp.BProgram.bp;
+import bpSourceCode.bApplication.BApplication;
+import bpSourceCode.bp.BProgram;
+import bpSourceCode.bp.BThread;
 
-import java.awt.BorderLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JApplet;
-import javax.swing.Timer;
-
-import bpSourceCode.bApplication.BApplication;
-import bpSourceCode.bp.BProgram;
-import bpSourceCode.bp.BThread;
+import static bpSourceCode.bp.BProgram.bp;
 
 @SuppressWarnings("serial")
 public class BoidApplet extends JApplet implements ActionListener,BApplication {
@@ -38,39 +36,39 @@ public class BoidApplet extends JApplet implements ActionListener,BApplication {
 
 	@Override
 	public void init() {
-		
+
 		this.setSize(1300,650);
-		
+
 		canvas = new BoidCanvas();
 		flock = new Flock();
 		canvas.flock = flock;
 
-		for (int n = 0; n < Constants.count; n++) {
+		for (int n = 0; n < Constants.count; n++) { //小鸟数量
 			Boid boid = new Boid(n);
 			boid.flock = flock;
 			flock.add(boid);
 			bp.add(boid, (double)n);
-			bp.add(boid.match, ((double)n)/10000.0+0.01);
+			bp.add(boid.match, ((double)n)/10000.0+0.01); //匹配速度
 			bp.add(boid.keep, ((double)n)/10000.0+0.02);
 			bp.add(boid.away, ((double)n)/10000.0+0.03);
 			bp.add(boid.towards, ((double)n)/10000.0+0.04);
-			
+
 			bp.add(boid.softUpper, ((double)n)/10000.0+0.05);
 			bp.add(boid.softLower, ((double)n)/10000.0+0.06);
 			bp.add(boid.softLeft, ((double)n)/10000.0+0.07);
 			bp.add(boid.softRight, ((double)n)/10000.0+0.08);
-			
+
 			bp.add(boid.hardUpper, ((double)n)/10000.0+0.09);
 			bp.add(boid.hardLower, ((double)n)/10000.0+0.1);
 			bp.add(boid.hardLeft, ((double)n)/10000.0+0.11);
 			bp.add(boid.hardRight, ((double)n)/10000.0+0.12);
-			
+
 			bp.add(boid.checkUpper, ((double)n)/10000.0+0.13);
 			bp.add(boid.checkLower, ((double)n)/10000.0+0.14);
 			bp.add(boid.checkLeft, ((double)n)/10000.0+0.15);
 			bp.add(boid.checkRight, ((double)n)/10000.0+0.16);
 
-			for(int i=0; i < Constants.count; i++) {
+			for(int i = 0; i < Constants.count; i++) {
 				if(i != n) {
 					bp.add(boid.awayArray[i], ((double)n)/1000.0 + ((double)i)/100000.0 + 0.2);
 					if(i<n) {
@@ -124,6 +122,7 @@ public class BoidApplet extends JApplet implements ActionListener,BApplication {
 	}
 	
 
+	@Override
 	public void runBApplication() {
 		try {
 			Thread.sleep(1000);

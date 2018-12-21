@@ -1,16 +1,15 @@
 package BPJ_Programming_Examples.Simulating_flight_of_a_flock_of_birds;
- 
 
-import static bpSourceCode.bp.eventSets.EventSetConstants.none;
-
-import java.awt.geom.Point2D;
 
 import bpSourceCode.bp.BThread;
 import bpSourceCode.bp.Event;
 import bpSourceCode.bp.eventSets.EventSet;
 import bpSourceCode.bp.exceptions.BPJException;
 
+import java.awt.geom.Point2D;
+
 import static bpSourceCode.bp.BProgram.bp;
+import static bpSourceCode.bp.eventSets.EventSetConstants.none;
 
 @SuppressWarnings("serial")
 public class Boid extends BThread{
@@ -99,11 +98,12 @@ public class Boid extends BThread{
 
 				//Calculates average velocity
 				int n = flock.size() - 1;
-				for (Boid b : flock)
+				for (Boid b : flock) {
 					if (b != boid) {
 						x += b.speed.x;
 						y += b.speed.y;
 					}
+				}
 				x /= n;
 				y /= n;
 
@@ -113,7 +113,7 @@ public class Boid extends BThread{
 				//adjusts velocity
 				boid.speed.x += vx * Constants.speedAdjust * time;
 				boid.speed.y += vy * Constants.speedAdjust * time;
-				
+
 			}
 		}
 	}
@@ -129,16 +129,16 @@ public class Boid extends BThread{
 			while(true) {
 				bp.bSync(none, endSleep, none);
 				bp.bSync(Events.flyTowardsCenterOfMass, none, none);
-				
+
 				Point2D.Double center = vectorCenter(); //calculates center of mass
-				
+
 				//moves bird towards center of mass
 				move(time, center.x, center.y, Constants.holdFlockCenter);
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * Fly away from the perceived center of mass
 	 */
@@ -149,9 +149,9 @@ public class Boid extends BThread{
 			while(true) {
 				bp.bSync(none, endSleep, none);
 				bp.bSync(Events.flyAwayFromCenterOfMass, none, none);
-				
+
 				Point2D.Double center = vectorCenter();//calculates center of mass
-				
+
 				//update velocity to be away from center of mass
 				speed.x -= center.x * Constants.flockAwayFromCenter * time;
 				speed.y -= center.y * Constants.flockAwayFromCenter * time;
@@ -159,7 +159,7 @@ public class Boid extends BThread{
 		}
 	}
 
-	
+
 	Point2D.Double vectorCenter() {
 		// Compute the perceive center.
 		double x = 0;
@@ -167,11 +167,12 @@ public class Boid extends BThread{
 
 		// Do not count self
 		int n = flock.size() - 1;
-		for (Boid boid : flock)
+		for (Boid boid : flock) {
 			if (boid != this) {
 				x += boid.location.x;
 				y += boid.location.y;
 			}
+		}
 
 		x /= n;
 		y /= n;
@@ -191,22 +192,23 @@ public class Boid extends BThread{
 			while(true) {
 				bp.bSync(none, endSleep, none);
 				bp.bSync(Events.keepSpeed, none, none);
-				
+
 				double v = Math.sqrt(speed.x * speed.x + speed.y * speed.y);
 				double r = Constants.minSpeed - v;
 
-				if (r > 0 && v < Constants.maxSpeed)
+				if (r > 0 && v < Constants.maxSpeed) {
 					r = 1 + Constants.speedAdjust; //speed should be increased
-				else
+				} else {
 					r = 1 - Constants.speedAdjust; //speed should be decreased
+				}
 
 				//adjusts velocity
 				speed.x *= r;
 				speed.y *= r;
 			}
-			
+
 		}
-		
+
 	}
 
 	/**
@@ -236,9 +238,9 @@ public class Boid extends BThread{
 			while(true) {
 				bp.bSync(none, endSleep, none);
 				bp.bSync(keepAway[indexOfOtherBoid], none, none);
-				
+
 				double distance = otherBoid.location.distance(location);
-					
+
 				// birds are in the same location
 				if (distance < 1)
 					distance = 1;
@@ -246,22 +248,22 @@ public class Boid extends BThread{
 				double s = 1 / distance;
 				double vx = s * (location.x - otherBoid.location.x);
 				double vy = s * (location.y - otherBoid.location.y);
-				
+
 				//adjusts coordinates coordinates
-				location.x += vx * Constants.avoidNeibourthood*time; 
-				location.y += vy * Constants.avoidNeibourthood*time; 					
+				location.x += vx * Constants.avoidNeibourthood*time;
+				location.y += vy * Constants.avoidNeibourthood*time;
 			}
-			
+
 		}
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Bounce from the boundaries of the modeling space (like bats in the cave). To avoid sticking on the boundary
 	 * (altering vector on every iteration), this must be the last method to call.
 	 */
-	
+
 	public class SoftBounceFromLeftWall extends BThread{
 
 		@Override
@@ -271,9 +273,9 @@ public class Boid extends BThread{
 				bp.bSync(softBounceFromLeftWall, none, none);
 				speed.x += Constants.avoidNeibourthood;
 			}
-			
+
 		}
-	
+
 	}
 	public class SoftBounceFromRightWall extends BThread{
 
@@ -284,9 +286,9 @@ public class Boid extends BThread{
 				bp.bSync(softBounceFromRightWall, none, none);
 				speed.x -= Constants.avoidNeibourthood;
 			}
-			
+
 		}
-	
+
 	}
 	public class SoftBounceFromUpperWall extends BThread{
 
@@ -297,9 +299,9 @@ public class Boid extends BThread{
 				bp.bSync(softBounceFromUpperWall, none, none);
 				speed.y += Constants.avoidNeibourthood;
 			}
-			
+
 		}
-	
+
 	}
 	public class SoftBounceFromLowerWall extends BThread{
 
@@ -310,11 +312,11 @@ public class Boid extends BThread{
 				bp.bSync(softBounceFromLowerWall, none, none);
 				speed.y -= Constants.avoidNeibourthood;
 			}
-			
+
 		}
-	
+
 	}
-	
+
 	//HARD BOUNCE
 	public class HardBounceFromLeftWall extends BThread{
 
@@ -326,9 +328,9 @@ public class Boid extends BThread{
 				location.x = 0;
 				speed.x = -speed.x;
 			}
-			
+
 		}
-	
+
 	}
 	public class HardBounceFromRightWall extends BThread{
 
@@ -340,9 +342,9 @@ public class Boid extends BThread{
 				location.x = flock.size.width;
 				speed.x = -speed.x;
 			}
-			
+
 		}
-	
+
 	}
 	public class HardBounceFromUpperWall extends BThread{
 
@@ -354,9 +356,9 @@ public class Boid extends BThread{
 				location.y = 0;
 				speed.y = -speed.y;
 			}
-			
+
 		}
-	
+
 	}
 	public class HardBounceFromLowerWall extends BThread{
 
@@ -368,11 +370,11 @@ public class Boid extends BThread{
 				location.y = flock.size.height;
 				speed.y = -speed.y;
 			}
-			
+
 		}
-	
+
 	}
-	
+
 	//CHECK WALLS
 		public class CheckLeftWall extends BThread{
 
@@ -391,9 +393,9 @@ public class Boid extends BThread{
 						bp.bSync(none, endSleep, hardAndSoft);
 					}
 				}
-				
+
 			}
-		
+
 		}
 		public class CheckRightWall extends BThread{
 
@@ -412,9 +414,9 @@ public class Boid extends BThread{
 						bp.bSync(none, endSleep, hardAndSoft);
 					}
 				}
-				
+
 			}
-		
+
 		}
 		public class CheckUpperWall extends BThread{
 
@@ -432,7 +434,7 @@ public class Boid extends BThread{
 					else {
 						bp.bSync(none, endSleep, hardAndSoft);
 					}
-				}			
+				}
 			}
 		}
 		public class CheckLowerWall extends BThread{
@@ -451,11 +453,11 @@ public class Boid extends BThread{
 					else {
 						bp.bSync(none, endSleep, hardAndSoft);
 					}
-				}			
+				}
 			}
-		
+
 		}
-	
+
 	@Override
 	public void runBThread(){
 		t1 = System.currentTimeMillis();

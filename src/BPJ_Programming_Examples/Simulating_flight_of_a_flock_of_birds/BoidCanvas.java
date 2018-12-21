@@ -1,11 +1,8 @@
 package BPJ_Programming_Examples.Simulating_flight_of_a_flock_of_birds;
 
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-import javax.swing.JComponent;
+import javax.swing.*;
+import java.awt.*;
 
 
 @SuppressWarnings("serial")
@@ -24,6 +21,7 @@ public class BoidCanvas extends JComponent {
 	int[] xx = new int[3];
 	int[] yy = new int[3];
 
+	@Override
 	public void paintComponent(Graphics gg) {
 		Graphics2D g = (Graphics2D) gg;
 

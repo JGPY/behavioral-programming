@@ -25,8 +25,9 @@ public class DeclareWinner extends BThread {
 			msg = "X Wins";
 		} else if (bp.lastEvent == OWin) {
 			msg = "O Wins";
-		} else
+		} else {
 			msg = "A Draw";
+		}
 
 		System.out.println(msg);
 		TicTacToe.playGUI.message.setText(msg);
