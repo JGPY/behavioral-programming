@@ -1,6 +1,8 @@
 package robotNavigationSimulation.constants;
 
-import robotNavigationSimulation.events.Node;
+import robotNavigationSimulation.map.Node;
+import robotNavigationSimulation.UI.GUI;
+
 import java.util.ArrayList;
 
 /**
@@ -10,6 +12,9 @@ import java.util.ArrayList;
  */
 public  class Constants {
 
+	public static GUI gui;
+
+	public static boolean uiMap = false;
 	/**
 	 * AStarMap size
 	 */
@@ -20,31 +25,36 @@ public  class Constants {
 	 * Initial position of the robot
 	 */
 
-	public static Node robotInitialPosition = new Node(40,40);
+	public static Node robotStartPosition = new Node(40,40);
 
 	/**
 	 * End position of the robot
 	 */
 
-	public static Node robotEndPosition = new Node(500,500);
+	public static Node robotEndPosition = new Node(480,500);
 
 	/**
 	 * Current position of the robot
 	 */
-	public static Node robotCurrentPosition = robotInitialPosition;
+	public static Node robotCurrentPosition = robotStartPosition;
 
 	/**
 	 * Store robot walking track
 	 */
-	public static ArrayList<Node> listTrackFoot = new ArrayList();
+	public static ArrayList<Node> movingTrail = new ArrayList();
 
-	/**
-	 * Robot movement angle and speed
-	 */
+    /**
+     * Mobile robot angle
+     *
+     * Angle range [1, 360]
+     * [90, 180, 270, 360] = [East, South, Weat, North]
+     */
+    public static int angle =0;
 
-	public static int robotSpeed =0;
-	public static int robotAngle =0;
-
+    /**
+     * Robot movement speed
+     */
+    public static int robotSpeed =0;
 
 	/**
 	 * The acceleration for speed adjustment.
