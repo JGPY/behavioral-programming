@@ -39,7 +39,7 @@ public class Move extends Event {
     public String toString() {
 		
 		  
-		return ("Move(" + row + "," + col + ")/" +number); 
+		return ("Move(" + row + "," + col + ")/" +number);
 	}
 	
 	/*

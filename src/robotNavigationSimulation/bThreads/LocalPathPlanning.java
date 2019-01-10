@@ -43,53 +43,42 @@ public class LocalPathPlanning extends BThread {
 
             ArrayList<Node> GlobalRoute = bpEvent.getRoute();
 
-//            synchronized (this) {
-                for ( Node node: GlobalRoute) {
-                    sleep(100);
+            for ( Node node: GlobalRoute) {
+                sleep(100);
 
-                    Node robotNextPosition  = node;
-                    Constants.movingTrail.add(Constants.robotCurrentPosition);
+                Node robotNextPosition  = node;
+                Constants.movingTrail.add(Constants.robotCurrentPosition);
 
-                    new Thread(new Runnable(){
-                        @Override
-                        public void run() {
-                            gui.repaint();
-                        }
-                    }).start();
-
-
-                    //模拟 通过传感器获得环境数据
-                    AStarNode[][] map= new AStarMap().getMap();
-                    if (!map[node.getX()][node.getY()].isReachable()) {
-                        Constants.robotCurrentPosition = robotNextPosition;
-                    } else {
-
-                        Node node1 = robotNextPosition;
-                        robotNextPosition.setX(node1.getX()+1);
-                        robotNextPosition.setY(node1.getY()+1);
-
-                        Constants.robotCurrentPosition = robotNextPosition;
+                new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        gui.repaint();
                     }
-                    //根据GlobalRoute调整方向姿态
-                }
+                }).start();
 
-//            }
+
+                //模拟 通过传感器获得环境数据
+                AStarNode[][] map= new AStarMap().getMap();
+                if (!map[node.getX()][node.getY()].isReachable()) {
+                    Constants.robotCurrentPosition = robotNextPosition;
+                } else {
+
+                    Node node1 = robotNextPosition;
+                    robotNextPosition.setX(node1.getX()+1);
+                    robotNextPosition.setY(node1.getY()+1);
+
+                    Constants.robotCurrentPosition = robotNextPosition;
+                }
+            }
+
+
 
             //发布轨迹
             logger.info("requesting event:" + "MovingTrail.class");
             bp.bSync(new MovingTrail(Constants.movingTrail), none, none);
             logger.info("requested event:" + "MovingTrail.class");
 
-            //fuzzy logic
-            //数据模糊化进行规则匹配
-            //如果规则不是TF和TF，
-            //就解模糊化
-            //行走位置
-            //如果位置与GlobalRoute偏差
-            //否则
-            //根据路线行走
-            //
-//        bp.bSync(none, StaticEvents.UIRefresh, all);
+
         }
     }
 }

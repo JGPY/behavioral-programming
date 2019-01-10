@@ -47,13 +47,13 @@ public class NavigationAPP extends JApplet implements BApplication {
             e1.printStackTrace();
         }
 
-        bp.add(new GlobalPathPlanning(), 1.1);
+        bp.add(new Navigation(), 1.0);
 
-        bp.add(new LocalPathPlanning(), 2.0);
+        bp.add(new GlobalPathPlanning(), 2.0);
 
-        bp.add(new Navigation(), 3.1);
+        bp.add(new LocalPathPlanning(), 3.0);
 
-//        bp.add(new GUIRefresh(), 4.1);
+
 
         bp.startAll();
     }

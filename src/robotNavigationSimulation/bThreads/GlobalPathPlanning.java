@@ -59,7 +59,6 @@ public class GlobalPathPlanning extends BThread {
                     globalRoute.add(new Node(data.getX(), data.getY()));
                 }
 
-
                 //发布全局路线
                 logger.info("requesting event:" + "GPathRoute.class");
                 bp.bSync(new GPathRoute(globalRoute), none, none);

@@ -20,21 +20,8 @@ public class Navigation extends BThread {
     @Override
     public void runBThread() throws InterruptedException, BPJRequestableSetException {
         while (true) {
-
-//            Scanner in =new Scanner(System.in);
-//
-//            System.out.println("请输入横坐标 X ");
-//            int X=in.nextInt();//输入一个整数
-//            System.out.println("请输入横坐标 Y ");
-//            int Y=in.nextInt();//输入一个整数
-//
-//
-//            //输入数据校验
-
-
             bp.bSync(none, StaticEvents.LPathEvent, StaticEvents.GPathEvent);
             bp.bSync(none, StaticEvents.GPathEvent, StaticEvents.LPathEvent);
-
         }
     }
 }
