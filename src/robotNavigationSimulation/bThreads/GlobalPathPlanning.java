@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import robotNavigationSimulation.aStar.AStarMap;
 import robotNavigationSimulation.constants.Constants;
 import robotNavigationSimulation.aStar.AStarNode;
-import robotNavigationSimulation.events.GPathRoute;
+import robotNavigationSimulation.events.GRoute;
 import robotNavigationSimulation.map.Node;
 import robotNavigationSimulation.events.StaticEvents;
 import robotNavigationSimulation.aStar.AStar;
@@ -60,9 +60,9 @@ public class GlobalPathPlanning extends BThread {
                 }
 
                 //发布全局路线
-                logger.info("requesting event:" + "GPathRoute.class");
-                bp.bSync(new GPathRoute(globalRoute), none, none);
-                logger.info("requested event:" + "GPathRoute.class");
+                logger.info("requesting event:" + "GRoute.class");
+                bp.bSync(new GRoute(globalRoute), none, none);
+                logger.info("requested event:" + "GRoute.class");
 
             }
 

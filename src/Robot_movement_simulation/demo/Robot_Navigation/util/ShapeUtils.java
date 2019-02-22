@@ -253,7 +253,7 @@ public class ShapeUtils {
 	//		Iterator<?> it = board.getObstacleMap().entrySet().iterator();
 	//		Line2D displacement = new Line2D.Double(start.getC().getX(),start.getC().getY(), succesor.getC().getX(),succesor.getC().getY());
 	//		while(it.hasNext()){
-	//			Map.Entry<Integer, List<Coordinates>> pair = (Map.Entry)it.next();
+	//			AStarMap.Entry<Integer, List<Coordinates>> pair = (AStarMap.Entry)it.next();
 	//			List<Coordinates> coordinateList = pair.getValue();
 	//			int sides =coordinateList.size();
 	//			for(int i=0;i<sides;i++){

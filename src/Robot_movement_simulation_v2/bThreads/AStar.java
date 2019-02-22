@@ -1,7 +1,9 @@
-package Robot_movement_simulation.bThreads;
+package Robot_movement_simulation_v2.bThreads;
 
-import Robot_movement_simulation.map.Map;
-import Robot_movement_simulation.map.Node;
+import Robot_movement_simulation_v2.bThreads.Data;
+import Robot_movement_simulation_v2.bThreads.Point;
+import Robot_movement_simulation_v2.map.Map;
+import Robot_movement_simulation_v2.map.Node;
 
 import bpSourceCode.bp.BThread;
 import bpSourceCode.bp.exceptions.BPJRequestableSetException;
@@ -11,9 +13,10 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 
-import static Robot_movement_simulation.bThreads.Constants.listTrackFoot;
-import static Robot_movement_simulation.bThreads.Constants.robotCurrentPosition;
-import static Robot_movement_simulation.events.StaticEvents.EventAStar;
+import static Robot_movement_simulation_v2.bThreads.Constants.gui;
+import static Robot_movement_simulation_v2.bThreads.Constants.listTrackFoot;
+import static Robot_movement_simulation_v2.bThreads.Constants.robotCurrentPosition;
+import static Robot_movement_simulation_v2.events.StaticEvents.EventAStar;
 import static bpSourceCode.bp.eventSets.EventSetConstants.none;
 import static bpSourceCode.bp.BProgram.bp;
 

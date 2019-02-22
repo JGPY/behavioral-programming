@@ -1,11 +1,10 @@
-package robotNavigationSimulation.events;
+package robotNavigationSimulation_v1.events;
 
 import bpSourceCode.bp.Event;
-import robotNavigationSimulation.map.Node;
 
 import java.util.ArrayList;
 
-public class MovingTrail extends Event {
+public class LPathEvent extends Event {
 
   /** Global route */
   private ArrayList<Node> movingTrail;
@@ -16,7 +15,7 @@ public class MovingTrail extends Event {
    * @param movingTrail
    *                robot moving trail
    */
-  public MovingTrail(ArrayList<Node> movingTrail) {
+  public LPathEvent(ArrayList<Node> movingTrail) {
     super();
     this.movingTrail = movingTrail;
     this.setName("GRoute(" + movingTrail + ")");

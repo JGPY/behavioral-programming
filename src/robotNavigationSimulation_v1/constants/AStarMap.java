@@ -1,9 +1,13 @@
-package robotNavigationSimulation.constants;
+package robotNavigationSimulation_v1.constants;
 
-import robotNavigationSimulation.events.AStarNode;
+import robotNavigationSimulation_v1.events.AStarNode;
 
 /**
  *
+ *
+ *  围墙 %
+ *  障碍物 #
+ *  轨迹 *
  * @author L
  */
 public class AStarMap {

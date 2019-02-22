@@ -1,4 +1,4 @@
-package robotNavigationSimulation.events;
+package robotNavigationSimulation_v1.events;
 
 /**
  * A*节点类

@@ -1,4 +1,4 @@
-package Robot_movement_simulation.events;
+package Robot_movement_simulation_v2.events;
 
 import bpSourceCode.bp.Event;
 

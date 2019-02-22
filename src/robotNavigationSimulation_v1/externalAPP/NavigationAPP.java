@@ -1,17 +1,15 @@
-package robotNavigationSimulation.APP;
+package robotNavigationSimulation_v1.externalAPP;
 
+import robotNavigationSimulation_v1.bThreads.*;
 import bpSourceCode.bApplication.BApplication;
 import bpSourceCode.bp.BProgram;
-import robotNavigationSimulation.UI.GUI;
-import robotNavigationSimulation.bThreads.GlobalPathPlanning;
-import robotNavigationSimulation.bThreads.LocalPathPlanning;
-import robotNavigationSimulation.bThreads.NavigationCtrl;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 import static bpSourceCode.bp.BProgram.bp;
-import static robotNavigationSimulation.constants.Constants.gui;
+import static robotNavigationSimulation_v1.constants.Constants.gui;
 
 public class NavigationAPP extends JApplet implements BApplication {
 
@@ -47,13 +45,12 @@ public class NavigationAPP extends JApplet implements BApplication {
             e1.printStackTrace();
         }
 
-        bp.add(new NavigationCtrl(), 1.0);
+        bp.add(new AStar(), 1.0);
+        bp.add(new GlobalPathPlanning(), 1.1);
 
-        bp.add(new GlobalPathPlanning(), 2.0);
+        bp.add(new LocalPathPlanning(), 2.0);
 
-        bp.add(new LocalPathPlanning(), 3.0);
-
-
+        bp.add(new GUIRefresh(), 3.1);
 
         bp.startAll();
     }

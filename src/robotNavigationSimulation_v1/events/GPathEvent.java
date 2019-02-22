@@ -1,4 +1,4 @@
-package robotNavigationSimulation.events;
+package robotNavigationSimulation_v1.events;
 
 import bpSourceCode.bp.Event;
 
@@ -24,7 +24,7 @@ public class GPathEvent extends Event {
 	public GPathEvent(ArrayList<Node> route) {
 		super();
 		this.route = route;
-		this.setName("GPathEvent(" + route + ")");
+		this.setName("GRoute(" + route + ")");
 	}
 
 	public ArrayList<Node> getRoute() {

@@ -1,4 +1,4 @@
-package Robot_movement_simulation;
+package Robot_movement_simulation_v2;
 
 import Robot_movement_simulation.bThreads.*;
 import bpSourceCode.bApplication.BApplication;

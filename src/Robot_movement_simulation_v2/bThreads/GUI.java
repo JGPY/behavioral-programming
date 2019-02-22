@@ -1,15 +1,18 @@
-package Robot_movement_simulation.bThreads;
+package Robot_movement_simulation_v2.bThreads;
 
 
-import Robot_movement_simulation.map.Map;
-import Robot_movement_simulation.map.Node;
+
+import Robot_movement_simulation_v2.map.Map;
+import Robot_movement_simulation_v2.map.Node;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.ListIterator;
 
-import static Robot_movement_simulation.bThreads.Constants.robotCurrentPosition;
-import static Robot_movement_simulation.bThreads.Constants.robotInitialPosition;
-import static Robot_movement_simulation.bThreads.Constants.listTrackFoot;
+import static Robot_movement_simulation_v2.bThreads.Constants.robotCurrentPosition;
+import static Robot_movement_simulation_v2.bThreads.Constants.robotInitialPosition;
+import static Robot_movement_simulation_v2.bThreads.Constants.listTrackFoot;
 
 
 @SuppressWarnings("serial")
@@ -158,7 +161,6 @@ class Point{
 	}
 }
 class Obstacle{
-
 	int x;
 	int y;
 	int width;

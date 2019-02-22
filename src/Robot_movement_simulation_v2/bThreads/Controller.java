@@ -1,4 +1,4 @@
-package Robot_movement_simulation.bThreads;
+package Robot_movement_simulation_v2.bThreads;
 
 import bpSourceCode.bp.BThread;
 import bpSourceCode.bp.exceptions.BPJRequestableSetException;

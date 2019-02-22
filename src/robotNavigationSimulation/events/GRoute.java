@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * An event that is requested (with high priority)
  * @author L
  */
-public class GPathRoute extends Event {
+public class GRoute extends Event {
 
 	/**
 	 * Global route
@@ -22,10 +22,10 @@ public class GPathRoute extends Event {
 	 * @param route
 	 *            Route after global path planning
 	 */
-	public GPathRoute(ArrayList<Node> route) {
+	public GRoute(ArrayList<Node> route) {
 		super();
 		this.route = route;
-		this.setName("GPathRoute(" + route + ")");
+		this.setName("GRoute(" + route + ")");
 	}
 
 	public ArrayList<Node> getRoute() {

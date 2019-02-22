@@ -95,7 +95,7 @@ public class SnakeDemo extends JComponent{
         explain.setBounds(498, 138, 100, 350);
         explain.setFont(f2);
         explain.setLineWrap(true);
-        explain.setOpaque(false); 
+        explain.setOpaque(false);
         
         for(int i = 0; i < MAX_SIZE;i++)
         {

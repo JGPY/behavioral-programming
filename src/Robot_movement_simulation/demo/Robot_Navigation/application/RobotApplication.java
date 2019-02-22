@@ -53,7 +53,7 @@ public class RobotApplication extends JFrame {
 		this.setJMenuBar(AppGUI.addMenuBar(this));
 		DB=new DrawBoard();
 		this.add(DB);
-		setTitle("Robot Navigation");
+		setTitle("Robot NavigationAPP");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(600, 600);
 		setResizable(false);

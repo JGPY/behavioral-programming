@@ -13,9 +13,9 @@ import static bpSourceCode.bp.eventSets.EventSetConstants.none;
  *
  * @author L
  */
-public class Navigation extends BThread {
+public class NavigationCtrl extends BThread {
 
-    private static final Logger logger = LoggerFactory.getLogger(Navigation.class);
+    private static final Logger logger = LoggerFactory.getLogger(NavigationCtrl.class);
 
     @Override
     public void runBThread() throws InterruptedException, BPJRequestableSetException {

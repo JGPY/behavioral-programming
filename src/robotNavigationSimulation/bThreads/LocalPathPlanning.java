@@ -34,16 +34,16 @@ public class LocalPathPlanning extends BThread {
 
             bp.bSync(StaticEvents.LPathEvent, none, none);
 
-            //Capture event
-            logger.info("Capturing event:" + "GPathRoute.class");
-            bp.bSync(none,new EventsOfClass(GPathRoute.class),none);
-            logger.info("Captured event:" + "GPathRoute.class");
+            //Capture GRoute event.
+            logger.info("Capturing event:" + "GRoute.class");
+            bp.bSync(none,new EventsOfClass(GRoute.class),none);
+            logger.info("Captured event:" + "GRoute.class");
+            GRoute bpEvent = (GRoute) bp.lastEvent;
 
-            GPathRoute bpEvent = (GPathRoute) bp.lastEvent;
+            // Get global route.
+            ArrayList<Node> globalRoute = bpEvent.getRoute();
 
-            ArrayList<Node> GlobalRoute = bpEvent.getRoute();
-
-            for ( Node node: GlobalRoute) {
+            for ( Node node: globalRoute) {
                 sleep(100);
 
                 Node robotNextPosition  = node;
@@ -56,13 +56,12 @@ public class LocalPathPlanning extends BThread {
                     }
                 }).start();
 
-
                 //模拟 通过传感器获得环境数据
                 AStarNode[][] map= new AStarMap().getMap();
+
                 if (!map[node.getX()][node.getY()].isReachable()) {
                     Constants.robotCurrentPosition = robotNextPosition;
                 } else {
-
                     Node node1 = robotNextPosition;
                     robotNextPosition.setX(node1.getX()+1);
                     robotNextPosition.setY(node1.getY()+1);
@@ -70,9 +69,7 @@ public class LocalPathPlanning extends BThread {
                     Constants.robotCurrentPosition = robotNextPosition;
                 }
             }
-
-
-
+            globalRoute.clear();
             //发布轨迹
             logger.info("requesting event:" + "MovingTrail.class");
             bp.bSync(new MovingTrail(Constants.movingTrail), none, none);

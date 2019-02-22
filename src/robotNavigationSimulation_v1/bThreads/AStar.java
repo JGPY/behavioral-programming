@@ -1,14 +1,19 @@
-package robotNavigationSimulation.bThreads;
+package robotNavigationSimulation_v1.bThreads;
 
-import robotNavigationSimulation.constants.AStarMap;
-import robotNavigationSimulation.events.AStarNode;
+import robotNavigationSimulation_v1.constants.AStarMap;
+import robotNavigationSimulation_v1.constants.Constants;
+import robotNavigationSimulation_v1.events.AStarNode;
 import bpSourceCode.bp.BThread;
 import bpSourceCode.bp.exceptions.BPJRequestableSetException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import robotNavigationSimulation_v1.events.AStarRoute;
+import robotNavigationSimulation_v1.events.Node;
+
 import java.util.ArrayList;
 
-import static robotNavigationSimulation.constants.Constants.robotCurrentPosition;
+import static bpSourceCode.bp.BProgram.bp;
+import static bpSourceCode.bp.eventSets.EventSetConstants.none;
 
 /**
  *
@@ -27,7 +32,6 @@ public class AStar extends BThread {
 	 * 终点
 	 */
 	private static AStarNode endNode;
-
 
 	/** 
    * 使用ArrayList数组作为“开启列表”和“关闭列表” 
@@ -76,8 +80,8 @@ public class AStar extends BThread {
 		int x = node.getX();
 		int y = node.getY();
 		//
-		for (int i = 0;i<3;i++){
-			for (int j = 0;j<3;j++){
+		for (int i = 0; i<3; i++){
+			for (int j = 0; j<3; j++){
 				//判断条件为：节点为可到达的（即不是障碍物，不在关闭列表中），开启列表中不包含，不是选中节点
 				if(AStarMap.getMap()[x-1+i][y-1+j].isReachable()&&!open.contains(AStarMap.getMap()[x-1+i][y-1+j])&&!(x==(x-1+i)&&y==(y-1+j))){
 					AStarMap.getMap()[x-1+i][y-1+j].setPNode(AStarMap.getMap()[x][y]);
@@ -98,8 +102,7 @@ public class AStar extends BThread {
 		for (int i = 0;i<arr.size()-1;i++){
 			for (int j = i+1;j<arr.size();j++){
 				if(arr.get(i).getFValue() > arr.get(j).getFValue()){
-					AStarNode tmp = new AStarNode();
-					tmp = arr.get(i);
+					AStarNode tmp = arr.get(i);
 					arr.set(i, arr.get(j));
 					arr.set(j, tmp);
 				}
@@ -119,10 +122,7 @@ public class AStar extends BThread {
 			close.add(node);
 		}
 	}
-	public ArrayList<AStarNode> search(AStarMap AStarMap){
-
-//		close.clear();
-//		open.clear();
+	public synchronized ArrayList<AStarNode> search(AStarMap AStarMap){
 		//对起点即起点周围的节点进行操作
 		inOpen(AStarMap.getMap()[AStarMap.getStartNode().getX()][AStarMap.getStartNode().getY()], AStarMap);
 		close.add(AStarMap.getMap()[AStarMap.getStartNode().getX()][AStarMap.getStartNode().getY()]);
@@ -141,12 +141,10 @@ public class AStar extends BThread {
 		//直到开启列表中包含终点时，循环退出
 		inClose(AStarMap.getMap()[AStarMap.getEndNode().getX()][AStarMap.getEndNode().getY()], open);
 
-		return close;
-//		showPath(close, AStarMap);//单独A*算法 ，将路径一次输入地图
-//
-//		listTrackFoot.add(new Node(close.get(0).getX(), close.get(0).getY()));//值记录路径中的第一步，然后进入局部优化（模糊逻辑）
-//		logger.info("close12:x={}, y={}:", close.get(0).getX(), close.get(0).getY());
+		//将计算出的路径输入地图
+		//showPath(close,map);
 
+		return close;
 	}
 	/**
    * 将路径标记出来
@@ -168,15 +166,23 @@ public class AStar extends BThread {
 
 	@Override
 	public void runBThread() throws InterruptedException, BPJRequestableSetException {
+//获得初始位置 startNode，目标位置 endNode
+		Node startNode = Constants.robotStartPosition;
+		Node endNode = Constants.robotEndPosition;
+
+		//获得栅格化后的地图 AStarMap
 		AStarMap AStarMap = new AStarMap();
-		AStarMap.setStartNode(new AStarNode(robotCurrentPosition.getX()/20, robotCurrentPosition.getY()/20, "o", true));
-		AStarMap.setEndNode(new AStarNode(25,25,"o", true));
-		while (true) {
-			logger.info("AStar.search");
-//			AStar.search(AStarMap, );
-			logger.info("同步：bp.bSync(EventAStar, none, none)");
-//			bp.bSync(EventAStar,none,none);
-			logger.info("异步：bp.bSync(EventAStar, none, none)");
-		}
+
+		//配置起点点和终点
+		AStarMap.setStartNode(new AStarNode(startNode.getX()/20, startNode.getY()/20, "o", true));
+		AStarMap.setEndNode(new AStarNode(endNode.getX()/20,endNode.getY()/20,"o", true));
+
+		//计算全局路线图
+		ArrayList<AStarNode> globalRouteAStar =  new AStar().search(AStarMap);
+
+
+		logger.info("requesting event:" + "GRoute.class");
+		bp.bSync(new AStarRoute(globalRouteAStar), none, none);
+		logger.info("requested event:" + "GRoute.class");
 	}
 }

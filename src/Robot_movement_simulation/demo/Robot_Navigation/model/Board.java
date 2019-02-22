@@ -85,7 +85,7 @@ public class Board{
 		Iterator<?> it = boardInstance.getObstacleMap().entrySet().iterator();
 
 		while(it.hasNext()){
-			Map.Entry<Integer, List<Coordinates>> pair = (Map.Entry)it.next();
+			AStarMap.Entry<Integer, List<Coordinates>> pair = (AStarMap.Entry)it.next();
 			List<Coordinates> coordinateList = pair.getValue();
 			int sides =coordinateList.size();
 			for(int i=0;i<sides;i++){

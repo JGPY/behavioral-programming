@@ -1,11 +1,11 @@
-package robotNavigationSimulation.bThreads;
+package robotNavigationSimulation_v1.bThreads;
 
 import bpSourceCode.bp.BThread;
 import bpSourceCode.bp.eventSets.EventsOfClass;
 import bpSourceCode.bp.exceptions.BPJRequestableSetException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import robotNavigationSimulation.events.Move;
+import robotNavigationSimulation_v1.events.Move;
 
 import static bpSourceCode.bp.BProgram.bp;
 import static bpSourceCode.bp.eventSets.EventSetConstants.none;
